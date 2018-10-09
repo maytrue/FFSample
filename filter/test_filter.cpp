@@ -280,7 +280,10 @@ end:
   av_frame_free(&filterFrame);
 
   if (ret < 0 && ret != AVERROR_EOF) {
-    std::cout << "Error occurred:" << av_err2str(ret) << std::endl;
+    char str[AV_ERROR_MAX_STRING_SIZE];
+    memset(str, 0, sizeof(str));
+    av_make_error_string(str, AV_ERROR_MAX_STRING_SIZE, ret);
+    std::cout << "Error occurred:" << str << std::endl;
   }
 
   return 0;
