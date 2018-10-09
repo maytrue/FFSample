@@ -24,7 +24,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -v -stdlib=libc++ \
 -L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/")
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(ASS REQUIRED libass libpng x264 x265 opus liblzma fdk-aac vpx lame sdl gsm)
+pkg_check_modules(ASS REQUIRED libass libpng x264 x265 opus liblzma fdk-aac vpx lame sdl gsm fontconfig)
 
 include_directories(
         ${CMAKE_SOURCE_DIR}/../../ffmpeg-4.0.2/build/include
@@ -43,6 +43,7 @@ set(FFMPEG_LIBS
         ${CMAKE_SOURCE_DIR}/../../ffmpeg-4.0.2/build/lib/libswresample.a
         ${CMAKE_SOURCE_DIR}/../../ffmpeg-4.0.2/build/lib/libswscale.a
         ${ASS_LIBRARIES}
+        /usr/local/Cellar/freetype/2.8.1/lib/libfreetype.dylib
         /usr/lib/libbz2.dylib
         /usr/lib/libiconv.dylib
         /usr/lib/libssl.dylib
@@ -50,4 +51,4 @@ set(FFMPEG_LIBS
 
 add_subdirectory(version)
 add_subdirectory(test)
-
+add_subdirectory(filter)
